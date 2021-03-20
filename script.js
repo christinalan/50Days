@@ -66,6 +66,28 @@ function init() {
   const listener = new THREE.AudioListener();
   camera.add(listener);
 
+  //day1dorian
+  const firstday = document.getElementById("track3");
+  const firstdaypos = new THREE.PositionalAudio(listener);
+  firstdaypos.setMediaElementSource(firstday);
+  firstdaypos.setRefDistance(0.03)
+  firstdaypos.setDirectionalCone(180,180,0)
+  firstday.play();
+
+  let col = new THREE.Color(0xff0000)
+  let sphereGeo = new THREE.SphereGeometry(0.25, 0, 0);
+  let sphereMat = new THREE.MeshPhongMaterial( {color: col})
+  let sphere = new THREE.Mesh(sphereGeo, sphereMat)
+
+  scene.add (sphere)
+  sphere.position.set(1,0,1)
+  sphere.scale.set(0.01,0.01,0.01)
+
+  sphere.add(firstdaypos);
+
+  const vizzz = new PositionalAudioHelper(firstdaypos, 5)
+  firstdaypos.add(vizzz);
+
   //*METAL SOUNDS
   const uMetal = document.getElementById("track1");
 
